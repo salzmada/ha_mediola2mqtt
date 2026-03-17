@@ -1,10 +1,14 @@
+# ============================================================================
+# Dockerfile für mediola2mqtt Home Assistant Add-on
+# ============================================================================
 ARG BUILD_FROM
 # hadolint ignore=DL3006
 FROM $BUILD_FROM
 
+# Zeichensatz setzen
 ENV LANG C.UTF-8
 
-# Install required packages in a single layer
+# Benötigte Python-Pakete installieren (in einer einzigen Schicht)
 # hadolint ignore=DL3018
 RUN apk add --no-cache \
     python3 \
@@ -13,12 +17,12 @@ RUN apk add --no-cache \
     py3-requests \
     py3-yaml
 
-# Copy application files
+# Anwendungsdateien kopieren
 COPY mediola2mqtt.py /
 COPY run.sh /
 
-# Make the entrypoint script executable
+# Startskript ausführbar machen
 RUN chmod a+x /run.sh
 
-# Set the entrypoint command
+# Startbefehl definieren
 CMD [ "/run.sh" ]

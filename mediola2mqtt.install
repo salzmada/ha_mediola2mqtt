@@ -1,14 +1,16 @@
+# mediola2mqtt.install - Arch Linux / Pacman Install-Skript
 post_install() {
-  # Create user
+  # Systembenutzer erstellen
   systemd-sysusers mediola2mqtt.conf
   chown -R mediola2mqtt:mediola2mqtt /opt/mediola2mqtt
 }
 
 post_upgrade() {
+  # systemd nach Aktualisierung neu laden
   systemctl daemon-reload
 }
 
 post_remove() {
-  systemctl stop mediola2mqtt.service
-  true
+  # Service vor dem Entfernen stoppen
+  systemctl stop mediola2mqtt.service || true
 }

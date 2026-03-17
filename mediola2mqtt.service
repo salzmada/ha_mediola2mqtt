@@ -1,5 +1,6 @@
+# mediola2mqtt.service - systemd Service-Datei
 [Unit]
-Description=mediola2mqtt
+Description=mediola2mqtt - Mediola AIO Gateway zu MQTT Brücke
 Wants=mosquitto.service
 After=network.target mosquitto.service
 StartLimitIntervalSec=0
